@@ -1,0 +1,24 @@
+<div>
+    <div class="col-8">
+        <label>Informe seu peso:</label>
+        <div class="form-inline">
+            <div class="form-group">
+                <input type="number" class="form-control" 
+                       [(ngModel)]="usuario.mass">
+            </div>
+            <button class="btn btn-secondary m-2"(click)='pesoTtotal()'>Calcular</button>
+        </div>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <th>Tripulação</th>
+            <th>Peso(kg)</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of passageiros">
+                <td>{{ item.name }}</td>
+                <td>{{ item.mass }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

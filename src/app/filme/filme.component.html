@@ -1,0 +1,4 @@
+<div *ngIf='filme'>
+    <h3 class="bg-primary text-white text-center p-3">{{ filme.title }}</h3>
+    <nave [personagens] = "filme.characters"></nave>
+</div>

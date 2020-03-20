@@ -1,0 +1,28 @@
+
+<div class="row" *ngIf="nave">
+    <div class="col-md-4">
+        <h1>{{ nave.name }}</h1>
+        <ul>
+            <li>Capacidade: {{ nave.cargo_capacity }}Kg</li>
+            <li>Utilizada: {{ capUtilizada }}%</li>
+            <li>Disponivel: {{ capDisponivel()|number:'1.1'}}Kg</li>
+            <li>Tripulação: {{ nave.crew }}</li>
+            <li>Passageiros: {{ nave.passengers }}</li>
+        </ul>
+        <hr>
+        <h6>Peso total dos embarcados: {{ total }}Kg</h6>
+        <div [ngSwitch]="decolar">
+            <div *ngSwitchCase="'decolar'" class="alert alert-success">A Nave decolou!!
+                <img src="../../assets/img/rocket.svg" width="200px">
+            </div>
+            <div class="alert alert-danger"*ngSwitchCase="'excedido'" >Capacidade Excedida</div>
+            <div *ngSwitchDefault class="alert alert-info">Aguardando decolagem...</div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <pessoas [crew]="pilotos"
+                 [characters]="personagens"
+                 (pesoTot)='pesoTotal($event)'>
+        </pessoas>
+    </div>
+</div>
