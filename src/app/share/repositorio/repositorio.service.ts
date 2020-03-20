@@ -17,7 +17,7 @@ export class RepositorioService implements OnDestroy {
   /**
    * retorna o array de personagens
   **/ 
-  getPersonagens():array<>{
+  getPersonagens(){
     return this.personagens
   }
 
