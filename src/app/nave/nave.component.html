@@ -1,4 +1,3 @@
-
 <div class="row" *ngIf="nave;else loading">
     <div class="col-md-4">
         <h1>{{ nave.name }}</h1>
@@ -15,14 +14,12 @@
             <div *ngSwitchCase="'decolar'" class="alert alert-success">A Nave decolou!!
                 <img src="../../assets/img/rocket.svg" width="200px">
             </div>
-            <div class="alert alert-danger"*ngSwitchCase="'excedido'" >Capacidade Excedida</div>
+            <div class="alert alert-danger" *ngSwitchCase="'excedido'">Capacidade Excedida</div>
             <div *ngSwitchDefault class="alert alert-info">Aguardando decolagem...</div>
         </div>
     </div>
     <div class="col-md-8">
-        <pessoas [crew]="pilotos"
-                 [characters]="personagens"
-                 (pesoTot)='pesoTotal($event)'>
+        <pessoas [crew]="pilotos" [characters]="personagens" (pesoTot)='pesoTotal($event)'>
         </pessoas>
     </div>
 </div>

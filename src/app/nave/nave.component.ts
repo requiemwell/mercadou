@@ -1,4 +1,4 @@
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ApiService } from '../share/api/api.service';
 import { Subscription } from 'rxjs';
 
@@ -6,16 +6,16 @@ import { Subscription } from 'rxjs';
   selector: 'nave',
   templateUrl: './nave.component.html',
 })
-export class NaveComponent implements OnInit{
+export class NaveComponent implements OnInit {
 
-  @Input()personagens:string[] //array com as urls das personagens do filme
-  id:number = 10 // id da nave para para busca na API
-  nave:any // atributo que receberá os dados referentes a nave Millenniun Falcon
-  pilotos:any[] // array para as urls dos pilotos da nave
-  capUtilizada:number = 99 // capacidade de carga utilizada em %
-  decolar:string // atributo de controle para a decolagem da nave
-  total:any // peso total dos ocupantes da nave para a decolagem
-  inscricao:Subscription
+  @Input() personagens: string[] //array com as urls das personagens do filme
+  id: number = 10 // id da nave para para busca na API
+  nave: any // atributo que receberá os dados referentes a nave Millenniun Falcon
+  pilotos: any[] // array para as urls dos pilotos da nave
+  capUtilizada: number = 99 // capacidade de carga utilizada em %
+  decolar: string // atributo de controle para a decolagem da nave
+  total: any // peso total dos ocupantes da nave para a decolagem
+  inscricao: Subscription
 
   constructor(private apiService: ApiService) { } // injeção da classe de servico 
 
@@ -29,7 +29,7 @@ export class NaveComponent implements OnInit{
         this.nave = n
         this.pilotos = n.pilots
       },
-      error: ()=> console.log("erro")
+      error: () => console.log("erro")
     })
   }
 
@@ -41,10 +41,10 @@ export class NaveComponent implements OnInit{
    * emissor de evento do componente filho (pessoas.component),
    * é o peso total das personagens que irão embarcar na nave
    **/
-  pesoTotal(event:number){
+  pesoTotal(event: number) {
     this.total = event
-    if(this.total < this.capDisponivel())//true se o peso total for menor 
-      this.decolar='decolar'
+    if (this.total < this.capDisponivel())//true se o peso total for menor 
+      this.decolar = 'decolar'
     else
       this.decolar = 'excedido'
   }
@@ -53,11 +53,11 @@ export class NaveComponent implements OnInit{
    * Metodo responsável pelo cálculo da capacidade 
    * de carga ainda disponível na nave
    **/
-  capDisponivel(){
-    return this.nave.cargo_capacity * (1 - this.capUtilizada/100)
+  capDisponivel() {
+    return this.nave.cargo_capacity * (1 - this.capUtilizada / 100)
   }
- 
-  ngOndestroy(){
+
+  ngOndestroy() {
     this.inscricao.unsubscribe()
   }
 }
