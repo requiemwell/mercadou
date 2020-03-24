@@ -1,5 +1,5 @@
 
-<div class="row" *ngIf="nave">
+<div class="row" *ngIf="nave;else loading">
     <div class="col-md-4">
         <h1>{{ nave.name }}</h1>
         <ul>
@@ -26,3 +26,6 @@
         </pessoas>
     </div>
 </div>
+<ng-template #loading>
+    <p>Loading...</p>
+</ng-template>

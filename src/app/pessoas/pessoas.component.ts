@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+
 import { RepositorioService } from '../share/repositorio/repositorio.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class PessoasComponent implements OnInit {
   
   usuario = {name: 'Você', mass: 0}//o sexto tripulante
  
-  constructor(public repo:RepositorioService) { } //injeção da depencencia RepositorioService
+  constructor(private repo:RepositorioService) { } //injeção da depencencia RepositorioService
 
   ngOnInit() {
     /**
@@ -41,7 +42,7 @@ export class PessoasComponent implements OnInit {
       .map(p=>{
         if(p.mass.toString().indexOf(',') > -1) // remove a virgula usada como separador decimal
           p.mass = p.mass.toString().replace(/,/gi,'')
-        return Number(p.mass)
+        return +p.mass
       })
       .reduce((curr,prev)=>curr += isNaN(prev)?80:prev,0)//valor arbitrário em caso de 'unknown'
     this.pesoTot.emit(peso)//emitindo o resultado
