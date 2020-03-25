@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
 export class RepositorioService implements OnDestroy {
 
   private personagens: any[] = [] //armazenas as personagens que irão embarcar na nave 
-  private inscricao: Subscription // para desinscrição do subscrible
+  private inscricao: Subscription[] = [] // para desinscrição do subscrible
 
   constructor(private apiService: ApiService) { }
 
@@ -30,9 +30,9 @@ export class RepositorioService implements OnDestroy {
   embarcar(urls: string[]) {
     // para cada url do array é feita uma busca na api
     urls.forEach(url => {
-      this.inscricao = this.apiService.getPeoples(url).subscribe({
+      this.inscricao.push(this.apiService.getPeoples(url).subscribe({
         next: p => this.personagens.push(p)
-      })
+      }))
     })
   }
 
@@ -52,6 +52,7 @@ export class RepositorioService implements OnDestroy {
   }
 
   ngOnDestroy() {
-    this.inscricao.unsubscribe()
+    // this.inscricao.unsubscribe()
+    this.inscricao.forEach(ins => ins.unsubscribe())
   }
 }
